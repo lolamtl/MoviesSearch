@@ -1,32 +1,55 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import MoviesList from "../components/MoviesList";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Search from "../components/Search";
-import movies from "../assets/movies.json";
+import MoviesList from "../components/MoviesList";
 
 const Home = () => {
-  const [results, setResults] = useState(movies);
+  const [result, setResult] = useState("");
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const searchResult = (event) => {
-    let newResults = [];
-    for (let i = 0; i < movies.results.length; i++) {
-      if (movies.results[i].keywords(event.target.value.toLowerCase()) !== -1) {
-        newResults.push(movies[i]);
-      } else {
-        console.log("c'est pas bon");
+  // Requête à l'API pour afficher la liste de film.
+
+  useEffect(() => {
+    const API_KEY = process.env.REACT_APP_NOT_SECRET_CODE;
+    const fetchData = async () => {
+      try {
+        let url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
+        const response = await axios.get(
+          url +
+            "&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1"
+        );
+
+        setData(response.data.results);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message);
       }
-    }
-    setResults(newResults);
-  };
+    };
+    fetchData();
+  }, []);
 
-  return (
-    <div className="background">
-      <Search searchResult={searchResult} />
-      <Link to={"/moviesdetails"}>
-        {results.results.map((movie, index) => {
-          return <MoviesList key={index} movie={movie} />;
-        })}
-      </Link>
+  let newResults = [];
+  // Exécuté à chaque changement dans l'input search.
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].title.indexOf(result) !== -1) {
+      newResults.push(
+        <MoviesList key={i} title={data[i].title} id={data[i].id} />
+      );
+    }
+  }
+
+  return isLoading ? (
+    <p>CHARGEMENT DE LA PAGE...</p>
+  ) : (
+    <div className="contain">
+      <Search
+        data={data}
+        setData={setData}
+        result={result}
+        setResult={setResult}
+      />
+      <div className="home">{newResults}</div>
     </div>
   );
 };

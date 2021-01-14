@@ -1,16 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const MoviesList = ({ movie }) => {
+// Liste de films.
+const MoviesList = ({ title, id }) => {
   return (
-    <div className="list">
-      <p className="title">{movie.original_title}</p>
-
-      <img
-        className="picture"
-        src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-        alt="poster"
-      />
-    </div>
+    <Link className="list" to={`/movie/${id}`}>
+      <p className="title"> 🎬 {title} 🎬</p>
+    </Link>
   );
 };
 

@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
-const Search = ({ searchResult }) => {
-  const [search, setSearch] = useState();
+// Barre de recherche.
+
+const Search = ({ result, setResult }) => {
   return (
-    <div className="positionheader">
-      <Link to="/">{/* <img className="logo" alt="logo" src={logo} /> */}</Link>
-      <form className="header">
-        <input
-          className="search"
-          type="search"
-          value={search}
-          placeholder="Find your favorite movie"
-          onChange={(event) => searchResult(event)}
-        ></input>
-      </form>
+    <div className="searcharea">
+      <input
+        className="searchbar"
+        type="search"
+        placeholder="Find your movie  🎞 "
+        value={result}
+        onChange={(event) => setResult(event.target.value)}
+      />
     </div>
   );
 };

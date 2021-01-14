@@ -8,20 +8,18 @@ import MoviesDescription from "./containers/MoviesDescription";
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/moviesdetails">
-            <MoviesDescription />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route path="/movie/:id">
+          <MoviesDescription />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 

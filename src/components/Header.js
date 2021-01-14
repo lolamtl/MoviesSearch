@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/Logo.png";
 
 const Header = () => {
   return (
-    <div className="positionheader">
-      <Link to="/">{/* <img className="logo" alt="logo" src={logo} /> */}</Link>
-      <p>Header barre</p>
+    <div className="container">
+      <Link to="/">
+        <img className="logo" alt="logo" src={logo} />
+      </Link>
     </div>
   );
 };
