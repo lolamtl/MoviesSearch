@@ -104,3 +104,27 @@ body {
   align-items: center;
   color: white;
 }
+@media (min-width: 500px) and (max-width: 840px) {
+  .moviedetails {
+    padding: 20px 0px;
+  }
+  .picture {
+    height: 200px;
+    width: 200px;
+  }
+  .detailstitle {
+    font-size: 25px;
+    width: 250px;
+  }
+  .description {
+    width: 240px;
+    font-size: 17px;
+  }
+  .searchbar {
+    width: 400px;
+    height: 40px;
+  }
+  .carddetails {
+    margin-left: 20px;
+  }
+}
