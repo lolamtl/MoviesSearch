@@ -17,7 +17,6 @@ const MoviesDescription = () => {
           `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
         );
         setData(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error.message);
       }
