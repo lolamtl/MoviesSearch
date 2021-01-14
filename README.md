@@ -1,4 +1,4 @@
-# MoviesList (Front-end app : React.js)
+# MoviesSearch (Front-end app : React.js)
 
 Front-end app to discover a list of movies and search a movie.
 
