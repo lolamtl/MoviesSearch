@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Search from "../components/Search";
-import MoviesList from "../components/MoviesList";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [result, setResult] = useState("");
@@ -29,16 +29,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  let newResults = [];
-  // Exécuté à chaque changement dans l'input search.
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].title.indexOf(result) !== -1) {
-      newResults.push(
-        <MoviesList key={i} title={data[i].title} id={data[i].id} />
-      );
-    }
-  }
-
   return isLoading ? (
     <p>CHARGEMENT DE LA PAGE...</p>
   ) : (
@@ -49,7 +39,13 @@ const Home = () => {
         result={result}
         setResult={setResult}
       />
-      <div className="home">{newResults}</div>
+      {data.map(({ title, id }, i) =>
+        data[i].title.indexOf(result) !== -1 ? (
+          <Link to={`/movie/${id}`} className="home">
+            {title}
+          </Link>
+        ) : null
+      )}
     </div>
   );
 };

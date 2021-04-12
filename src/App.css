@@ -64,8 +64,13 @@ body {
 }
 .home {
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
+  text-decoration-line: none;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: bold;
+  color: brown;
+  padding: 20px 0px;
+  font-size: 30px;
 }
 
 .moviedetails {
